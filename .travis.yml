@@ -15,9 +15,12 @@ script:
   - docker tag docarys:latest $DOCKER_USERNAME/docarys:$DOCARYS_SHORT_VERSION-$NODE_VERSION-build
   - docker tag docarys:latest $DOCKER_USERNAME/docarys:$DOCARYS_VERSION-$NODE_VERSION-build
   - docker images
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push $DOCKER_USERNAME/docarys:$DOCARYS_SHORT_VERSION-$NODE_VERSION-build
+  - docker push $DOCKER_USERNAME/docarys:$DOCARYS_VERSION-$NODE_VERSION-build
 
-deploy:
-  provider: script
-  script: bash docker_push
-  on:
-    branch: master
+# deploy:
+#   provider: script
+#   script: bash docker_push
+#   on:
+#     branch: master

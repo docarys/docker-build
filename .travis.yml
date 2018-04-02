@@ -1,0 +1,28 @@
+sudo: true
+dist: trusty
+
+env:
+  - $DOCKER_PASSWORD
+  - $DOCKER_USERNAME
+  - $DOCARYS_VERSION=1.1.0
+
+jobs:
+  include:
+    - stage: Docker Node 7 Build
+      script:
+      - export NODE_VERSION=7-alpine  
+      - ./build.sh
+      - ./tag.sh
+    - stage: Docker Node 8 Build
+      script:
+      - export NODE_VERSION=8-alpine  
+      - ./build.sh
+      - ./tag.sh
+    - stage: Docker Node 9 Build
+      script:
+      - export NODE_VERSION=9-alpine  
+      - ./build.sh
+      - ./tag.sh
+    - stage: test
+      script: 
+      - docker run --rm $DOCKER_USERNAME/docarys:latest-build cat hello.txt

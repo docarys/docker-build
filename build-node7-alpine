@@ -1,0 +1,4 @@
+
+FROM node:7-alpine
+LABEL maintainer="sesispla@outlook.com"
+RUN apk update && apk add --no-cache git nodejs-npm curl && npm install -g docarys docarys-material

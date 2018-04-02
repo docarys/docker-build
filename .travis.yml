@@ -2,10 +2,7 @@ sudo: true
 dist: trusty
 
 env:
-  - $DOCKER_PASSWORD
-  - $DOCKER_USERNAME
-  - $DOCARYS_SHORT_VERSION=1
-  - $DOCARYS_VERSION=1.1.0
+  - $DOCARYS_SHORT_VERSION=1 $DOCARYS_VERSION=1.1.0
 
 jobs:
   include:

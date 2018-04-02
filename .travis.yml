@@ -4,8 +4,8 @@ services:
   - docker
 
 env:
-  - $NODE_VERSION=8-alpine $DOCARYS_SHORT_VERSION=1 $DOCARYS_VERSION=1.1.0
-  - $NODE_VERSION=9-alpine $DOCARYS_SHORT_VERSION=1 $DOCARYS_VERSION=1.1.0 $LATEST=true
+  - $NODE_VERSION=8-alpine $DOCARYS_VERSION=$(npm show docarys version) $DOCARYS_SHORT_VERSION=${DOCARYS_VERSION:0:1}
+  - $NODE_VERSION=9-alpine $DOCARYS_VERSION=$(npm show docarys version) $LATEST=true $DOCARYS_SHORT_VERSION=${DOCARYS_VERSION:0:1}
 
 before_install:
   - docker pull node:$NODE_VERSION

@@ -11,14 +11,7 @@ before_install:
   - docker pull node:$NODE_VERSION
 
 script:
-  - docker build -t docarys:latest . --build-arg NODE_VERSION=$NODE_VERSION  
-  # - docker tag docarys:latest $DOCKER_USERNAME/docarys:$DOCARYS_SHORT_VERSION-$NODE_VERSION-build
-  # - docker tag docarys:latest $DOCKER_USERNAME/docarys:$DOCARYS_VERSION-$NODE_VERSION-build
-  # - docker images
-  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  # - docker push $DOCKER_USERNAME/docarys:$DOCARYS_SHORT_VERSION-$NODE_VERSION-build
-  # - docker push $DOCKER_USERNAME/docarys:$DOCARYS_VERSION-$NODE_VERSION-build
-  # - ./tag-latest.sh
+  - docker build -t docarys:latest . --build-arg NODE_VERSION=$NODE_VERSION
 
 deploy:
   provider: script

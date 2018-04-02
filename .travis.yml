@@ -8,11 +8,6 @@ env:
 
 jobs:
   include:
-    - stage: Docker Node 7 Build
-      script:
-      - export NODE_VERSION=7-alpine  
-      - ./build.sh
-      - ./tag.sh
     - stage: Docker Node 8 Build
       script:
       - export NODE_VERSION=8-alpine  

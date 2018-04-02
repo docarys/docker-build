@@ -1,5 +1,7 @@
-sudo: true
-dist: trusty
+sudo: required
+
+services:
+  - docker
 
 env:
   - $DOCARYS_SHORT_VERSION=1 $DOCARYS_VERSION=1.1.0

@@ -1,4 +1,5 @@
 sudo: required
+language: node_js
 services:
   - docker
 
@@ -8,10 +9,7 @@ env:
 
 jobs:
   include:
-    - stage: Docker Build
+    - stage: Docker publish
       script:
       - ./build.sh
       - ./tag.sh
-    - stage: Test
-      script: 
-      - docker run --rm $DOCKER_USERNAME/docarys:latest-build cat hello.txt

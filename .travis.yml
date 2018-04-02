@@ -7,21 +7,17 @@ env:
   - $NODE_VERSION=8-alpine $DOCARYS_SHORT_VERSION=1 $DOCARYS_VERSION=1.1.0
   - $NODE_VERSION=9-alpine $DOCARYS_SHORT_VERSION=1 $DOCARYS_VERSION=1.1.0
 
-
 before_install:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker pull node:$NODE_VERSION
 
 script:
-  - docker build -t docarys:latest . --build-arg NODE_VERSION=$NODE_VERSION
-  - docker images
+  - docker build -t docarys:latest . --build-arg NODE_VERSION=$NODE_VERSION  
   - docker tag docarys:latest $DOCKER_USERNAME/docarys:$DOCARYS_SHORT_VERSION-$NODE_VERSION-build
   - docker tag docarys:latest $DOCKER_USERNAME/docarys:$DOCARYS_VERSION-$NODE_VERSION-build
+  - docker images
 
 deploy:
   provider: script
-  script:
-    - docker push $DOCKER_USERNAME/docarys:$DOCARYS_SHORT_VERSION-$NODE_VERSION-build
-    - docker push $DOCKER_USERNAME/docarys:$DOCARYS_VERSION-$NODE_VERSION-build
+  script: bash docker_push
   on:
     branch: master

@@ -4,20 +4,15 @@ services:
   - docker
 
 env:
-  - $DOCARYS_SHORT_VERSION=1 $DOCARYS_VERSION=1.1.0
+  - $NODE_VERSION=8-alpine $DOCARYS_SHORT_VERSION=1 $DOCARYS_VERSION=1.1.0
+  - $NODE_VERSION=9-alpine $DOCARYS_SHORT_VERSION=1 $DOCARYS_VERSION=1.1.0
 
 jobs:
   include:
-    - stage: Docker Node 8 Build
+    - stage: Docker Build
       script:
-      - export NODE_VERSION=8-alpine  
       - ./build.sh
       - ./tag.sh
-    - stage: Docker Node 9 Build
-      script:
-      - export NODE_VERSION=9-alpine  
-      - ./build.sh
-      - ./tag.sh
-    - stage: test
+    - stage: Test
       script: 
       - docker run --rm $DOCKER_USERNAME/docarys:latest-build cat hello.txt
